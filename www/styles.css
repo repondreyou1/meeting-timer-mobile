@@ -1,0 +1,237 @@
+:root {
+    --bg-color: rgba(20, 20, 30, 0.7);
+    --text-color: #ffffff;
+    --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --secondary-bg: rgba(255, 255, 255, 0.1);
+    --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-family);
+    background: #000000;
+    /* Solid black background for Android */
+    color: var(--text-color);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+    overflow: hidden;
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    box-sizing: border-box;
+    background: #000000;
+    /* Solid black background */
+    border-radius: 0;
+}
+
+.timer-display {
+    font-size: 12rem;
+    /* 3x larger (was 4rem) */
+    font-weight: 700;
+    margin-top: 80px;
+    /* More top spacing */
+    margin-bottom: 30px;
+    font-variant-numeric: tabular-nums;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    letter-spacing: -2px;
+    transition: font-size 0.3s ease;
+}
+
+.timer-display.message {
+    font-size: 5rem;
+    /* Smaller for messages like "Alarm set for" or "TIME UP" */
+    letter-spacing: normal;
+}
+
+.controls-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.custom-timer-section {
+    width: 100%;
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.input-row {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+}
+
+input {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 28px;
+    /* Match button height */
+    color: white;
+    font-family: var(--font-family);
+    font-size: 1.5rem;
+    /* Match button font size */
+    outline: none;
+    width: 100%;
+    transition: all 0.2s;
+    backdrop-filter: blur(5px);
+}
+
+input:focus {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(118, 75, 162, 0.6);
+}
+
+input[type="number"] {
+    width: 100%;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+/* Hide spinner for number input */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.meeting-input {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.meeting-input label {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-left: 4px;
+    font-weight: 500;
+}
+
+.divider {
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.1), transparent);
+    width: 100%;
+    margin: 20px 0;
+}
+
+.bottom-controls {
+    margin-top: auto;
+    /* Push to bottom if container has height */
+    width: 100%;
+    padding-top: 10px;
+}
+
+.btn {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 28px;
+    /* Double height (was 14px) */
+    border-radius: 12px;
+    font-size: 1.5rem;
+    /* Larger text (was 1rem) */
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    outline: none;
+    -webkit-app-region: no-drag;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn-full {
+    width: 100%;
+}
+
+.btn-primary {
+    background: rgba(102, 126, 234, 0.4);
+    /* Semi-transparent primary */
+    color: white;
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.btn-primary:hover {
+    background: rgba(102, 126, 234, 0.6);
+    box-shadow: 0 6px 12px rgba(102, 126, 234, 0.3);
+    transform: translateY(-1px);
+}
+
+.btn-primary:active {
+    transform: translateY(1px);
+}
+
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.05);
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+}
+
+.btn-small {
+    padding: 20px 32px;
+    /* Double height (was 10px 16px) */
+    font-size: 1.3rem;
+    /* Larger text (was 0.9rem) */
+    background: rgba(102, 126, 234, 0.4);
+    /* Purple like other buttons */
+    color: white;
+    white-space: nowrap;
+}
+
+.btn-small:hover {
+    background: rgba(102, 126, 234, 0.6);
+}
+
+/* Draggable header area */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 30px;
+    -webkit-app-region: drag;
+    z-index: 10;
+}
+
+/* Compact Mode Styles */
+body.compact-mode .controls-grid,
+body.compact-mode .custom-timer-section,
+body.compact-mode .meeting-input,
+body.compact-mode .divider {
+    display: none;
+}
+
+body.compact-mode .timer-display {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 5rem;
+    /* Make it even bigger in compact mode */
+}
+
+body.compact-mode .bottom-controls {
+    padding-top: 0;
+}
